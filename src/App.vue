@@ -1,21 +1,20 @@
 <template>
-  <ion-app>
-    <ion-router-outlet />
-  </ion-app>
+  <ion-nav :root="component"></ion-nav>
+ 
+  
 </template>
 
-<script setup lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+<script lang="ts">
+  import { markRaw } from 'vue';
+  import { IonNav } from '@ionic/vue';
+  import PageOne from './components/PageOne.vue';
 
+  export default {
+    components: { IonNav },
+    data() {
+      return {
+        component: markRaw(PageOne),
+      };
+    },
+  };
 </script>
-
-<style> 
-
-body{
-  background-color:black;
-}
-
-img{
-  border-radius: 10px;
-}
-</style>
