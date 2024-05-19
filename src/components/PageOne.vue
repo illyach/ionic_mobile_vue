@@ -9,7 +9,11 @@
 
 
   
-
+  <div class="slider">
+    <div class="slide" v-for="(image, index) in images" :key="index">
+      <img :src="image" alt="">
+    </div>
+  </div>
 
 
 
@@ -48,9 +52,14 @@
         search: markRaw(search),
         radio: markRaw(radio),
         images: [
-          'https://via.placeholder.com/600x300?text=Slide+1',
-          'https://via.placeholder.com/600x300?text=Slide+2',
-          'https://via.placeholder.com/600x300?text=Slide+3'
+      'https://unsplash.it/100/150?image=390',
+      'https://unsplash.it/100/150?image=410',
+      'https://unsplash.it/100/150?image=420',
+      'https://unsplash.it/100/150?image=43',
+      'https://unsplash.it/100/150?image=440',
+      'https://unsplash.it/100/150?image=45',
+      'https://unsplash.it/100/150?image=46',
+      'https://unsplash.it/100/150?image=47'
         ]
       };
     },
@@ -59,10 +68,30 @@
 
 <style>
 
-ion-icon {
-
+.slider {
   display: flex;
-  justify-content: space-around;
+  overflow-x: auto;
+  gap: 10px; /* Adjust the gap as needed */
+  padding: 10px; /* Optional: Add padding around the slider */
+  scroll-snap-type: x mandatory;
+  margin-bottom: 230px;
+}
 
+.slide {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  display: block;
+  width: 100px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  object-fit: cover; /* Ensure the image covers the slide area */
+}
+.slider::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 </style>
