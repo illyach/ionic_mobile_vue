@@ -7,6 +7,12 @@
     </ion-nav-link>
   </ion-content>
 
+  <div class="genre-buttons">
+  <button v-for="genre in genres" :key="genre" >
+      {{ genre }}
+    </button>
+
+  </div>
 
   
   <div class="slider">
@@ -49,7 +55,7 @@
   import PageTwo from '../components/PageTwo.vue'
  import PageThree from '../components/PageThree.vue';
  import PageOne from '../components/PageOne.vue'
- import ImageSlider from '../components/ImageSlider.vue'
+
   export default {
     components: { IonHeader, IonTitle, IonToolbar, IonContent, IonNavLink, IonButton },
     data() {
@@ -58,56 +64,69 @@
         PageThree: markRaw(PageThree),
         search: markRaw(search),
         radio: markRaw(radio),
+        selectedGenre: '',
+
+        genres: ['Sci-Fi', 'Adventure', 'Drama', 'Comedy'],
         images: [
           {
-            url: 'https://unsplash.it/100/150?image=390',
+            url: 'https://unsplash.it/100/150?image=41',
             title: 'Image 1',
             author: 'Author 1',
-            rating: 4.5
+            rating: 4.5,
+            genre: 'Sci-Fi'
           },
           {
-            url: 'https://unsplash.it/100/150?image=410',
+            url: 'https://unsplash.it/100/150?image=40',
             title: 'Image 2',
             author: 'Author 2',
-            rating: 4.1
+            rating: 4.2,
+            genre: 'Adventure'
           },
           {
-            url: 'https://unsplash.it/100/150?image=420',
+            url: 'https://unsplash.it/100/150?image=42',
             title: 'Image 3',
             author: 'Author 3',
-            rating: 5.4
+            rating: 5.2,
+            genre: 'Drama'
           },
           {
             url: 'https://unsplash.it/100/150?image=43',
             title: 'Image 4',
             author: 'Author 4',
-            rating: 3.5
+            rating: 3.5,
+            genre: 'Comedy'
           },
           {
-            url: 'https://unsplash.it/100/150?image=440',
+            url: 'https://unsplash.it/100/150?image=44',
             title: 'Image 5',
             author: 'Author 5',
-            rating: 4.2
+            rating: 4.2,
+            genre: 'Sci-Fi'
           },
           {
             url: 'https://unsplash.it/100/150?image=45',
             title: 'Image 6',
             author: 'Author 6',
-            rating: 4.8
+            rating: 4.8,
+            genre: 'Adventure'
           },
           {
             url: 'https://unsplash.it/100/150?image=46',
             title: 'Image 7',
             author: 'Author 7',
-            rating: 4.3
+            rating: 4.3,
+            genre: 'Drama'
           },
           {
             url: 'https://unsplash.it/100/150?image=47',
             title: 'Image 8',
             author: 'Author 8',
-            rating: 3.9
+            rating: 3.9,
+            genre: 'Comedy'
           }
-        ]
+        ],
+
+        
       };
     },
   };
@@ -144,9 +163,9 @@
   left: 54px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-padding: 2px 5px;
-font-size: 9.4px;
-font-weight: bold;
+ padding: 2px 5px;
+ font-size: 9.4px;
+ font-weight: bold;
   border-radius: 9px;
 
 
@@ -163,4 +182,23 @@ font-weight: bold;
 .slider::-webkit-scrollbar {
   display: none;
 }
+
+.genre-buttons {
+
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+
+}
+
+.genre-buttons button {
+  padding: 5px;
+  background-color: rgb(7, 6, 6);
+  border-radius: 9px;
+  color:white;
+  font-weight: bold;
+}
+
+
 </style>
