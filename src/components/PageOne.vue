@@ -1,7 +1,9 @@
 <template>
   <ion-content class="ion-padding">
     <h1>Page One</h1>
-    <ion-nav-link router-direction="forward" :component="component">
+    
+    <ion-nav-link router-direction="forward" :component="PageTwo">
+
       <ion-button>Go to Page Two</ion-button>
     </ion-nav-link>
   </ion-content>
@@ -13,9 +15,13 @@
     <button @click="resetFilter">All</button>
   </div>
 
+  <!-- <ion-nav-link router-direction="forward" :component="component" :componentProps="{ book: images[index] }"> -->
+    
   <div class="slider">
     <div class="slide" v-for="(image, index) in images" :key="index">
-      <div class="image-container">
+      <ion-nav-link router-direction="forward" :component="CustomPage" :componentProps="{ book: image }"  >
+       
+          <div class="image-container">
         <img :src="image.url" alt="">
         <div class="rating">⭐ {{ image.rating }}</div>
       </div>
@@ -23,8 +29,12 @@
         <p class="title">{{ image.title }}</p>
         <p class="author">{{ image.author }}</p>
       </div>
+      
+      
+    </ion-nav-link>
     </div>
   </div>
+
 
   <!-- <ion-tabs>
     <ion-tab-bar slot="bottom">
@@ -48,10 +58,10 @@ import { IonHeader, IonTitle, IonToolbar, IonContent, IonNavLink, IonButton, Ion
 import { playCircle, radio, library, search } from 'ionicons/icons';
 import PageTwo from '../components/PageTwo.vue';
 import PageThree from '../components/PageThree.vue';
-
+import CustomPage from '../components/CustomPage.vue'
 // Component references
-const component = markRaw(PageTwo);
-const PageThreeComp = markRaw(PageThree);
+// const component = markRaw(CustomPage);
+
 const searchIcon = markRaw(search);
 const radioIcon = markRaw(radio);
 
@@ -69,7 +79,7 @@ const originalImages = [
 ];
 
 const images = ref(originalImages);
-
+const using = ref(true)
 // Methods
 const myMethod = (genre: string) => {
   images.value = originalImages.filter(image => image.genre === genre);
@@ -78,6 +88,11 @@ const myMethod = (genre: string) => {
 const resetFilter = () => {
   images.value = originalImages;
 };
+
+const getImage = (image: string) => {
+  console.log(image)
+}
+
 </script>
 
 <style>
@@ -140,4 +155,7 @@ const resetFilter = () => {
   color: white;
   font-weight: bold;
 }
+
+
+
 </style>
