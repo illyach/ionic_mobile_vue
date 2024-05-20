@@ -11,7 +11,14 @@
   
   <div class="slider">
     <div class="slide" v-for="(image, index) in images" :key="index">
-      <img :src="image" alt="">
+      <div class="image-container">
+        <img :src="image.url" alt="">
+        <div class="rating">⭐ {{ image.rating }}</div>
+      </div>
+      <div class="info">
+        <p class="title">{{ image.title }}</p>
+        <p class="author">{{ image.author }}</p>
+      </div>
     </div>
   </div>
 
@@ -52,14 +59,54 @@
         search: markRaw(search),
         radio: markRaw(radio),
         images: [
-      'https://unsplash.it/100/150?image=390',
-      'https://unsplash.it/100/150?image=410',
-      'https://unsplash.it/100/150?image=420',
-      'https://unsplash.it/100/150?image=43',
-      'https://unsplash.it/100/150?image=440',
-      'https://unsplash.it/100/150?image=45',
-      'https://unsplash.it/100/150?image=46',
-      'https://unsplash.it/100/150?image=47'
+          {
+            url: 'https://unsplash.it/100/150?image=390',
+            title: 'Image 1',
+            author: 'Author 1',
+            rating: 4.5
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=410',
+            title: 'Image 2',
+            author: 'Author 2',
+            rating: 4.1
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=420',
+            title: 'Image 3',
+            author: 'Author 3',
+            rating: 5.4
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=43',
+            title: 'Image 4',
+            author: 'Author 4',
+            rating: 3.5
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=440',
+            title: 'Image 5',
+            author: 'Author 5',
+            rating: 4.2
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=45',
+            title: 'Image 6',
+            author: 'Author 6',
+            rating: 4.8
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=46',
+            title: 'Image 7',
+            author: 'Author 7',
+            rating: 4.3
+          },
+          {
+            url: 'https://unsplash.it/100/150?image=47',
+            title: 'Image 8',
+            author: 'Author 8',
+            rating: 3.9
+          }
         ]
       };
     },
@@ -67,12 +114,11 @@
 </script>
 
 <style>
-
 .slider {
   display: flex;
   overflow-x: auto;
-  gap: 10px; /* Adjust the gap as needed */
-  padding: 10px; /* Optional: Add padding around the slider */
+  gap: 10px;
+  padding: 10px;
   scroll-snap-type: x mandatory;
   margin-bottom: 230px;
 }
@@ -81,17 +127,40 @@
   flex-shrink: 0;
   scroll-snap-align: start;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.slide img {
-  display: block;
-  width: 100px; /* Adjust the width as needed */
-  height: 150px; /* Adjust the height as needed */
-  object-fit: cover; /* Ensure the image covers the slide area */
+.image-container {
+  position: relative;
 }
+
+
+
+.rating {
+  position: absolute;
+  top: 125px;
+  left: 54px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+padding: 2px 5px;
+font-size: 9.4px;
+font-weight: bold;
+  border-radius: 9px;
+
+
+}
+
+.info {
+  text-align: center;
+}
+
+.title, .author {
+  margin: 5px 0;
+}
+
 .slider::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
+  display: none;
 }
 </style>
