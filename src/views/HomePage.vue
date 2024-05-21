@@ -5,6 +5,22 @@
       <button @click="goToPageTwo">Go to Page Two</button>
     </ion-content>
 
+
+    <div class="navbar">
+<div>
+  <a href="/msg" class="active">Home</a>
+  <!-- <ion-icon :icon="playCircle" /> -->
+</div>
+
+<div>
+  <a href="#news">News</a>
+</div>
+  
+ <div>
+  <a href="#contact">Contact</a>
+ </div>
+
+</div>
     
     
 
@@ -17,16 +33,19 @@
 
     <div class="slider">
       <div class="slide" v-for="(image, index) in images" :key="index">
-      
+        <div>
           <div class="image-container">
-            <img :src="image.url" alt="" />
+            <img :src="image.url" usemap="#imagemap" alt="" />
+            <map name="imagemap">
+              <area shape="rect" coords="0,0,100,100" :href="'/msg'" alt="" />
+            </map>
             <div class="rating">⭐ {{ image.rating }}</div>
           </div>
           <div class="info">
             <p class="title">{{ image.title }}</p>
             <p class="author">{{ image.author }}</p>
           </div>
-
+        </div>
       </div>
     </div>
 
@@ -63,6 +82,7 @@ import { ref } from 'vue';
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 import { playCircle, radio, library, search } from 'ionicons/icons';
+import CustomPage from './CustomPage.vue'
 
 // Icons
 const playCircleIcon = playCircle;
@@ -170,5 +190,37 @@ const resetFilter = () => {
 }
 
 
+/* Place the navbar at the bottom of the page, and make it stick */
+.navbar {
+  background-color: #d4d4d4;
+  border-top:2px solid #0e0d0d;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.navbar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
 
 </style>
