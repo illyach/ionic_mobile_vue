@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
 import Msg from '../views/Msg.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Msg',
     component: Msg
   },
+  
   
 ]
 
