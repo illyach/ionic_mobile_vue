@@ -4,31 +4,17 @@
     
    
       <h1>Page One</h1>
-      <ion-button @click="goToPageTwo">Go to Page Two</ion-button>
+      <ion-button @click="goToPageTwo" >Go to Page Two</ion-button>
 
 
 
-    <div class="navbar">
-<div>
-  <a href="/msg" class="active">Home</a>
-  <!-- <ion-icon :icon="playCircle" /> -->
-</div>
-
-<div>
-  <a href="#news">News</a>
-</div>
   
- <div>
-  <a href="#contact">Contact</a>
- </div>
-
-</div>
 
     <div class="genre-buttons">
       <button v-for="genre in genres" :key="genre.name" @click="myMethod(genre.name)" :style=" genre.name === isActive ? { color: 'black', backgroundColor: 'white', border:'3px solid black' } : {}" >
         {{ genre.emoji }}  {{ genre.name }} 
       </button>
-      <button @click="resetFilter" :style=" isActive === '' ? { color: 'black', backgroundColor: 'white', border:'3px solid black' } : {}"> All  </button>
+      <button @click="resetFilter" :style=" isActive === '' ? { color: 'black', backgroundColor: 'white', border:'3px solid black' } : {}"> Total </button>
     </div>
 
     <div class="slider" >
@@ -49,6 +35,27 @@
       </div>
     </div>
 
+
+    <nav class="nav">
+      <a href="#" class="nav__link">
+        <ion-icon :icon="playCircle" ></ion-icon>
+        <span class="nav__text">Home</span>
+      </a>
+ 
+      <a href="#" class="nav__link nav__link--active">
+        <ion-icon :icon="playCircle"></ion-icon>
+        <span class="nav__text">Search</span>
+      </a>
+      <a href="#" class="nav__link">
+        <ion-icon :icon="playCircle"></ion-icon>
+        <span class="nav__text">Library</span>
+      </a>
+      <a href="#" class="nav__link">
+        <ion-icon :icon="playCircle"></ion-icon>
+        <span class="nav__text">Favorite</span>
+      </a>
+     
+    </nav>
    
   </ion-page>
 </template>
@@ -109,7 +116,7 @@ import CustomPage from './CustomPage.vue'
 
 <style>
 .ion-page {
-  background-color: #0e0d0d;
+  background-color: black;
 }
 
 
@@ -171,46 +178,14 @@ import CustomPage from './CustomPage.vue'
 
 .genre-buttons button {
   padding: 0.59em;
-  background-color: rgb(7, 6, 6);
+  background-color: rgb(31, 31, 31);
   border-radius: 20px;
   color: white;
   font-weight: bold;
 }
 
 
-/* DOWN MENU */
-/* Place the navbar at the bottom of the page, and make it stick */
-.navbar {
-  background-color: #d4d4d4;
-  border-top:2px solid #0e0d0d;
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
 
-/* Style the links inside the navigation bar */
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.navbar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
 
 
 /* <router link> delete blu link color */
@@ -230,4 +205,56 @@ body {
   background: #222; /* Цвет фона */
 
 }
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 76px;
+  border-top: 3px solid rgb(31, 31, 31);
+  background-color: black;
+  display: flex;
+  overflow-x: auto;
+  justify-content: center;
+  align-items: center;
+  gap:23px;
+}
+
+.nav__link ion-icon {
+display: flex;
+
+}
+
+
+.nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #444444;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+
+.nav__link:hover {
+  background-color: #eeeeee;
+}
+
+.nav__link--active {
+  color: #009578;
+}
+
+.nav__icon {
+  font-size: 18px;
+}
+
+
 </style>
