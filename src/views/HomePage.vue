@@ -1,5 +1,9 @@
 <template>
   <ion-page>
+
+
+
+    
     <ion-content class="ion-padding">
       <h1>Page One</h1>
       <button @click="goToPageTwo">Go to Page Two</button>
@@ -32,13 +36,12 @@
     </div>
 
     <div class="slider">
-      <div class="slide" v-for="(image, index) in images" :key="index">
+      <div class="slide" v-for="(image, index) in images" :key="index"  >
+        <router-link :to="{name:'CustomPage', params: {id:image.id}}">
         <div>
           <div class="image-container">
-            <img :src="image.url" usemap="#imagemap" alt="" />
-            <map name="imagemap">
-              <area shape="rect" coords="0,0,100,100" :href="'/msg'" alt="" />
-            </map>
+            <img :src="image.url"  alt="" />
+         
             <div class="rating">⭐ {{ image.rating }}</div>
           </div>
           <div class="info">
@@ -46,34 +49,11 @@
             <p class="author">{{ image.author }}</p>
           </div>
         </div>
+      </router-link>
       </div>
     </div>
 
-    <!-- <ion-tabs>
-      <ion-router-outlet></ion-router-outlet>
-
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home" href="/home">
-          <ion-icon :icon="playCircle" />
-          <ion-label>Listen now</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="radio" href="/msg">
-          <ion-icon :icon="radio" />
-          <ion-label>Radio</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="library" href="/library">
-          <ion-icon :icon="library" color="warning" />
-          <ion-label>Library</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="search" href="/search">
-          <ion-icon :icon="search" />
-          <ion-label>Search</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs> -->
+   
   </ion-page>
 </template>
 
@@ -84,48 +64,38 @@ import { useRouter } from 'vue-router';
 import { playCircle, radio, library, search } from 'ionicons/icons';
 import CustomPage from './CustomPage.vue'
 
-// Icons
-const playCircleIcon = playCircle;
-const radioIcon = radio;
-const libraryIcon = library;
-const searchIcon = search;
-
-// Use router
-const router = useRouter();
-const goToPageTwo = () => {
-      router.push('/msg').catch(err => {
+    const genres = ['Sci-Fi', 'Adventure', 'Drama', 'Comedy'];
+    const originalImages = [
+      { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi', id:1 },
+      { url: 'https://unsplash.it/100/150?image=40', title: 'Image 2', author: 'Author 2', rating: 4.2, genre: 'Adventure', id:2 },
+      { url: 'https://unsplash.it/100/150?image=42', title: 'Image 3', author: 'Author 3', rating: 5.2, genre: 'Drama', id:3 },
+      { url: 'https://unsplash.it/100/150?image=43', title: 'Image 4', author: 'Author 4', rating: 3.5, genre: 'Comedy', id:4 },
+      { url: 'https://unsplash.it/100/150?image=44', title: 'Image 5', author: 'Author 5', rating: 4.2, genre: 'Sci-Fi', id:5 },
+      { url: 'https://unsplash.it/100/150?image=45', title: 'Image 6', author: 'Author 6', rating: 4.8, genre: 'Adventure', id:6 },
+      { url: 'https://unsplash.it/100/150?image=46', title: 'Image 7', author: 'Author 7', rating: 4.3, genre: 'Drama', id:7 },
+      { url: 'https://unsplash.it/100/150?image=47', title: 'Image 8', author: 'Author 8', rating: 3.9, genre: 'Comedy', id:8 }
+    ];
+  
+    const images = ref(originalImages);
+    const saveImage = ref('hello world');
+    const router = useRouter();
+  
+    const myMethod = (genre) => {
+      images.value = originalImages.filter(image => image.genre === genre);
+    };
+  
+    const resetFilter = () => {
+      images.value = originalImages;
+    };
+  
+   
+  
+    const goToPageTwo = () => {
+      router.push('/custom').catch(err => {
         console.error('Navigation error:', err);
-      });;
+      });
     };
 
-    const goToCustomPage = () => {
-      router.push('/msg').catch(err => {
-        console.error('Navigation error:', err);
-      });;
-    };
-// Data
-const genres = ['Sci-Fi', 'Adventure', 'Drama', 'Comedy'];
-const originalImages = [
-  { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi' },
-  { url: 'https://unsplash.it/100/150?image=40', title: 'Image 2', author: 'Author 2', rating: 4.2, genre: 'Adventure' },
-  { url: 'https://unsplash.it/100/150?image=42', title: 'Image 3', author: 'Author 3', rating: 5.2, genre: 'Drama' },
-  { url: 'https://unsplash.it/100/150?image=43', title: 'Image 4', author: 'Author 4', rating: 3.5, genre: 'Comedy' },
-  { url: 'https://unsplash.it/100/150?image=44', title: 'Image 5', author: 'Author 5', rating: 4.2, genre: 'Sci-Fi' },
-  { url: 'https://unsplash.it/100/150?image=45', title: 'Image 6', author: 'Author 6', rating: 4.8, genre: 'Adventure' },
-  { url: 'https://unsplash.it/100/150?image=46', title: 'Image 7', author: 'Author 7', rating: 4.3, genre: 'Drama' },
-  { url: 'https://unsplash.it/100/150?image=47', title: 'Image 8', author: 'Author 8', rating: 3.9, genre: 'Comedy' }
-];
-
-const images = ref(originalImages);
-
-// Methods
-const myMethod = (genre) => {
-  images.value = originalImages.filter(image => image.genre === genre);
-};
-
-const resetFilter = () => {
-  images.value = originalImages;
-};
 </script>
 
 <style>
@@ -222,5 +192,7 @@ const resetFilter = () => {
   background-color: #04AA6D;
   color: white;
 }
+
+
 
 </style>

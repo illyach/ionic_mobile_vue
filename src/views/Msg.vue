@@ -1,22 +1,28 @@
 <template>
   <ion-page>
 
+
+    <ion-content class="ion-padding">
+      <h1>Count: {{ store.count }}</h1>
+      <h1>{{ store.name }}</h1>
+      <h1>Double Count: {{ store.doubleCount }}</h1>
+
+      <ion-button @click="setName">Set Name</ion-button>
+      <br><br>
+      <ion-button @click="store.increment">Increment Count</ion-button>
+    </ion-content>
+
     <ion-card>
       <ion-card-header>
-        <ion-card-title>
-          Hello card
-        </ion-card-title>
-     
-      </ion-card-header> 
+        <ion-card-title>Hello card</ion-card-title>
+      </ion-card-header>
 
       <div class="custom-class">
-        <img src="https://content1.rozetka.com.ua/goods/images/original/3546418.jpg" alt="" width="130" height="200" >
+        <img src="https://content1.rozetka.com.ua/goods/images/original/3546418.jpg" alt="" width="130" height="200">
       </div>
 
       <ion-button href="/msg">Go to detail</ion-button>
       <ion-card-content>
-        
-     
       </ion-card-content>
     </ion-card>
 
@@ -24,7 +30,6 @@
       <ion-router-outlet></ion-router-outlet>
 
       <ion-tab-bar slot="bottom">
-
         <ion-tab-button tab="home" href="/home">
           <ion-icon :icon="playCircle" />
           <ion-label>Listen now</ion-label>
@@ -45,28 +50,27 @@
           <ion-label>Search</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
-    </ion-tabs> 
+    </ion-tabs>
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonCardTitle, IonCardHeader, IonCardContent, IonCard } from '@ionic/vue';
 import { playCircle, radio, library, search } from 'ionicons/icons';
 import { useRoute } from 'vue-router';
-
-import { personCircle } from 'ionicons/icons';
-import { getMessage } from '../data/messages';
-
-const getBackButtonText = () => {
-  const win = window as any;
-  const mode = win && win.Ionic && win.Ionic.mode;
-  return mode === 'ios' ? 'Inbox' : '';
-};
-
+import { useMyStore } from '@/storage';
+import { onMounted } from 'vue';
+import CustomPage from './CustomPage.vue'
 const route = useRoute();
-const message = getMessage(parseInt(route.params.id as string, 10));
+const store = useMyStore();
+
+onMounted(() => {
+  console.log('Component mounted');
+});
 </script>
 
 <style scoped>
-
+.custom-class {
+  text-align: center;
+}
 </style>

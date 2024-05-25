@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
 import Msg from '../views/Msg.vue'
-
+import CustomPage from '../views/CustomPage.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/msg',
     name: 'Msg',
     component: Msg
+  },
+  {
+    path: '/custom/:id',
+    name: 'CustomPage',
+    component: CustomPage
   },
   
   
