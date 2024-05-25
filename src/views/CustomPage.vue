@@ -4,7 +4,7 @@
   <div>
     <p>{{bookPage.title}} </p>
     <p>{{bookPage.author}} </p>
-    <p>{{bookPage.rating}} </p>
+    <p>{{bookPage.rating}} / 5 </p>
     <p>{{bookPage.genre}} </p>
     <img :src="bookPage.url" alt="">
   </div>

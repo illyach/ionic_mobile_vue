@@ -11,9 +11,6 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 <style> 
 
-body{
-  background-color:black;
-}
 
 img{
   border-radius: 10px;
