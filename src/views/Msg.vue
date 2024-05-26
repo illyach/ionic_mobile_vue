@@ -60,7 +60,7 @@ import { playCircle, radio, library, search } from 'ionicons/icons';
 import { useRoute } from 'vue-router';
 import { useMyStore } from '@/storage';
 import { onMounted } from 'vue';
-import CustomPage from './CustomPage.vue'
+import BookPage from './BookPage.vue'
 const route = useRoute();
 const store = useMyStore();
 

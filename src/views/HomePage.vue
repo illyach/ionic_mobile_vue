@@ -19,7 +19,7 @@
 
     <div class="slider" >
       <div class="slide" v-for="(image, index) in images" :key="index"  >
-        <router-link :to="{name:'CustomPage', params: {id:image.id}}" class="custom-link">
+        <router-link :to="{name:'BookPage', params: {id:image.id}}" class="custom-link">
         <div>
           <div class="image-container">
             <img :src="image.url"  alt="" />
@@ -37,21 +37,21 @@
 
 
     <nav class="nav">
-      <a href="#" class="nav__link">
-        <ion-icon :icon="playCircle" ></ion-icon>
+      <a href="/home" class="nav__link custom-link" :class="{ 'nav__link--active': isActiveHome }" @click="isActiveHome = true">
+        <ion-icon :icon="isActiveHome ? home : homeOutline"  size="large"></ion-icon>
         <span class="nav__text">Home</span>
       </a>
  
-      <a href="#" class="nav__link nav__link--active">
-        <ion-icon :icon="playCircle"></ion-icon>
+      <a href="/home" class="nav__link " :class="{ 'nav__link--active': isActiveSearch }" @click="isActiveSearch = true">
+        <ion-icon :icon="search" size="large"></ion-icon>
         <span class="nav__text">Search</span>
       </a>
-      <a href="#" class="nav__link">
-        <ion-icon :icon="playCircle"></ion-icon>
+      <a href="/home" class="nav__link" :class="{ 'nav__link--active': isActiveLibrary }" @click="isActiveLibrary = true">
+        <ion-icon :icon="bookmarks" size="large"></ion-icon>
         <span class="nav__text">Library</span>
       </a>
-      <a href="#" class="nav__link">
-        <ion-icon :icon="playCircle"></ion-icon>
+      <a href="/home" class="nav__link" :class="{ 'nav__link--active': isActiveFav }" @click="isActiveFav = true">
+        <ion-icon :icon="isActiveFav ? heart : heartOutline" size="large"></ion-icon>
         <span class="nav__text">Favorite</span>
       </a>
      
@@ -64,8 +64,8 @@
 import { ref } from 'vue';
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { playCircle, radio, library, search } from 'ionicons/icons';
-import CustomPage from './CustomPage.vue'
+import { playCircle, radio, library, homeOutline, home, search, bookmarks, heartOutline, heart } from 'ionicons/icons';
+import BookPage from './BookPage.vue'
 
     // const genres = [`Sci-Fi`, 'Adventure', 'Drama', 'Comedy'];
     const genres = [
@@ -91,6 +91,13 @@ import CustomPage from './CustomPage.vue'
   
     const colorSwitcher = ref(false)
     const isActive = ref('')
+
+
+    //bottom menu animaniton
+   const isActiveSearch = ref(false)
+   const isActiveHome = ref(false)
+   const isActiveLibrary = ref(false)
+   const isActiveFav  = ref(false)
 
     const myMethod = (genre) => {
       images.value = originalImages.filter(image => image.genre === genre);
@@ -210,7 +217,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 76px;
+  height: 60px;
   border-top: 3px solid rgb(31, 31, 31);
   background-color: black;
   display: flex;
@@ -244,12 +251,13 @@ display: flex;
 }
 
 
-.nav__link:hover {
+/* .nav__link:hover {
   background-color: #eeeeee;
-}
+} */
 
 .nav__link--active {
-  color: #009578;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .nav__icon {
