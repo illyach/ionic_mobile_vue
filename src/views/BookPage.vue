@@ -1,21 +1,25 @@
 
 <template>
   <ion-page>
-    <ion-button @click="goBack">Назад</ion-button>
+    
   <div>
     <p>{{bookPage.title}} </p>
     <p>{{bookPage.author}} </p>
     <p>{{bookPage.rating}} / 5 </p>
     <p>{{bookPage.genre}} </p>
     <img :src="bookPage.url" alt="">
+    <ion-icon :icon="heartOutline" size="large" color="danger"  @click="toggleFavorite(bookPage)" :style="{ color: isFavorite ? 'red' : 'black' }"></ion-icon>
   </div>
+  <ion-button @click="goBack">Назад</ion-button>
 </ion-page>
 </template>
 
 <script setup>
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
 import { useRoute, useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed, toRaw} from 'vue';
+import {sharedState} from '../state.js'
+import { heartOutline} from 'ionicons/icons';
 
 const originalImagesFromHome = [
       { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi', id:1 },
@@ -33,6 +37,23 @@ const route = useRoute(); //это route
 const bookPage = originalImagesFromHome.find(i => i.id === parseInt(route.params.id));
 
 const router = useRouter();
+
+const isFavorite = computed(() => {
+  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  return favorites.some(fav => fav.id === bookPage.id);
+});
+
+const toggleFavorite = (book) => {
+  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  const existingIndex = favorites.findIndex(fav => fav.id === book.id);
+  if (existingIndex !== -1) {
+    favorites.splice(existingIndex, 1);
+  } else {
+    favorites.push(book);
+  }
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+};
+
 
 const goBack = () => {
   router.go(-1);

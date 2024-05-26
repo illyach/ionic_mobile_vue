@@ -5,6 +5,8 @@ import HomePage from '../views/HomePage.vue'
 import Msg from '../views/Msg.vue'
 import BookPage from '../views/BookPage.vue';
 import LibraryPage from '../views/LibraryPage.vue';
+import FavoritePage from '../views/FavoritePage.vue';
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -29,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/library',
     name: 'LibraryPage',
     component: LibraryPage
+  },
+  {
+    path: '/fav',
+    name: 'FavoritePage',
+    component: FavoritePage
   },
   
   

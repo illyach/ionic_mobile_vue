@@ -2,7 +2,7 @@
     <ion-page>
     <div class="content-container">
       <div class="image-grid">
-        <div class="image-item" v-for="(image, index) in images" :key="index">
+        <div class="image-item" v-for="(image, index) in originalImagesFromHome" :key="index">
             <router-link :to="{name:'BookPage', params: {id:image.id}}" class="custom-link">
           <img :src="image.url" :alt="image.title" />
           <div class="info">
@@ -39,7 +39,7 @@
     { url: 'https://unsplash.it/100/150?image=51', title: 'Image 12', author: 'Author 12', rating: 3.9, genre: 'Comedy', id: 12 }
   ];
   
-  const images = ref(originalImagesFromHome);
+
   </script>
   
   <style>

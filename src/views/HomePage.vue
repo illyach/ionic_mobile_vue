@@ -50,7 +50,7 @@
         <ion-icon :icon="bookmarks" size="large"></ion-icon>
         <span class="nav__text">Library</span>
       </a>
-      <a href="/home" class="nav__link" :class="{ 'nav__link--active': isActiveFav }" @click="isActiveFav = true">
+      <a href="/fav" class="nav__link" :class="{ 'nav__link--active': isActiveFav }" @click="isActiveFav = true">
         <ion-icon :icon="isActiveFav ? heart : heartOutline" size="large"></ion-icon>
         <span class="nav__text">Favorite</span>
       </a>
