@@ -1,6 +1,7 @@
 
 <template>
   <ion-page>
+    <ion-button @click="goBack">Назад</ion-button>
   <div>
     <p>{{bookPage.title}} </p>
     <p>{{bookPage.author}} </p>
@@ -13,8 +14,9 @@
 
 <script setup>
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
+
 const originalImagesFromHome = [
       { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi', id:1 },
       { url: 'https://unsplash.it/100/150?image=40', title: 'Image 2', author: 'Author 2', rating: 4.2, genre: 'Adventure', id:2 },
@@ -26,7 +28,13 @@ const originalImagesFromHome = [
       { url: 'https://unsplash.it/100/150?image=47', title: 'Image 8', author: 'Author 8', rating: 3.9, genre: 'Comedy', id:8 }
     ];
 
-const route = useRoute();
+const route = useRoute(); //это route
+
 const bookPage = originalImagesFromHome.find(i => i.id === parseInt(route.params.id));
 
+const router = useRouter();
+
+const goBack = () => {
+  router.go(-1);
+};
 </script>

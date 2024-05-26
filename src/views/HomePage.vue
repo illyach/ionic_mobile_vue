@@ -46,7 +46,7 @@
         <ion-icon :icon="search" size="large"></ion-icon>
         <span class="nav__text">Search</span>
       </a>
-      <a href="/home" class="nav__link" :class="{ 'nav__link--active': isActiveLibrary }" @click="isActiveLibrary = true">
+      <a href="/library" class="nav__link" :class="{ 'nav__link--active': isActiveLibrary }" @click="isActiveLibrary = true">
         <ion-icon :icon="bookmarks" size="large"></ion-icon>
         <span class="nav__text">Library</span>
       </a>
@@ -64,7 +64,7 @@
 import { ref } from 'vue';
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { playCircle, radio, library, homeOutline, home, search, bookmarks, heartOutline, heart } from 'ionicons/icons';
+import { playCircle, radio, library, homeOutline, home, search, bookmarks, heartOutline, heart, moon} from 'ionicons/icons';
 import BookPage from './BookPage.vue'
 
     // const genres = [`Sci-Fi`, 'Adventure', 'Drama', 'Comedy'];
