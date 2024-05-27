@@ -1,10 +1,5 @@
 <template>
     <ion-page>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Favorites</ion-title>
-        </ion-toolbar>
-      </ion-header>
       <ion-content>
         <div class="content-container" v-if="sharedState.favorites.length === 0">
           No favorites yet.
@@ -12,11 +7,20 @@
         <div class="content-container" v-else>
           <div class="image-grid">
             <div class="image-item" v-for="book in sharedState.favorites" :key="book.id">
-              <img :src="book.url" alt="">
+              <div class="image-wrapper">
+                <img :src="book.url" alt="">
+                <ion-icon 
+                  :icon="heartIcon" 
+                  size="large" 
+                  color="danger" 
+                  @click="toggleFavorite(book)" 
+                  :style="{ color: isFavorite(book) ? 'red' : 'black' }" 
+                  class="favorite-icon">
+                </ion-icon>
+              </div>
               <div class="info">
                 <p class="title">{{ book.title }}</p>
                 <p class="author">{{ book.author }}</p>
-                <ion-icon :icon="heartIcon" size="large" color="danger" @click="toggleFavorite(book)" :style="{ color: isFavorite(book) ? 'red' : 'black' }"></ion-icon>
               </div>
             </div>
           </div>
@@ -26,10 +30,10 @@
   </template>
   
   <script setup>
-  import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon } from '@ionic/vue';
-  import { heartOutline, heartSharp } from 'ionicons/icons';
+  import { IonPage, IonContent, IonIcon } from '@ionic/vue';
+  import { heartOutline } from 'ionicons/icons';
   import { sharedState } from '../state.js';
-  import { onMounted, computed } from 'vue';
+  import { onMounted } from 'vue';
   
   const heartIcon = heartOutline;
   
@@ -81,10 +85,22 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  .image-wrapper {
+    position: relative;
+    
+  }
+  
   .image-item img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+  }
+  
+  .favorite-icon {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    cursor: pointer;
   }
   
   .info {

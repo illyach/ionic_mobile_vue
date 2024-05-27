@@ -44,6 +44,7 @@ const isFavorite = computed(() => {
 });
 
 const toggleFavorite = (book) => {
+console.log(book)
   let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   const existingIndex = favorites.findIndex(fav => fav.id === book.id);
   if (existingIndex !== -1) {
