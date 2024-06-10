@@ -1,6 +1,11 @@
 <template>
     <ion-page>
     <div class="content-container">
+      <div class="icon-container">
+        <div class="circle"></div>
+
+        <ion-icon :icon="arrowBack" class="icon" size="large" color="light" @click="goBack"></ion-icon>
+      </div>
       <div class="image-grid">
         <div class="image-item" v-for="(image, index) in originalImagesFromHome" :key="index">
             <router-link :to="{name:'BookPage', params: {id:image.id}}" class="custom-link">
@@ -20,9 +25,14 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
+  import { heartOutline, arrowBack, heart } from 'ionicons/icons';
 
 
   const router = useRouter();
+
+  const goBack = () => {
+  router.go(-1);
+};
 
   const originalImagesFromHome = [
     { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi', id: 1 },
@@ -80,5 +90,40 @@
   p {
     color: white;
   }
+
+
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.92); 
+    opacity:13%;
+    z-index: 3;
+  }
+  
+  .circle:first-of-type {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .circle:last-of-type {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon-container {
+    position: relative;
+    width: 48px; 
+    height: 48px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon {
+    position: absolute;
+  
+    z-index: 9999;
+  }
+  
   </style>
   

@@ -36,7 +36,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/fav',
     name: 'FavoritePage',
     component: FavoritePage
+  },
+  {
+    path: '/read/:id',
+    name: 'TextPage',
+    component: TextPage
   }
+  
   
   
   

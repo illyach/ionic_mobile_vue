@@ -48,7 +48,9 @@
       </div>
       <p class="textDesc">{{bookPage.text}}</p>
       <div class="Button_container">
-        <button class="btn">Read Now</button>
+        <router-link :to="{name:'TextPage', params: {id:bookPage.id}}" class="custom-link">
+       <button class="btn">Read Now</button>
+        </router-link>
       </div>
 
     </div>
@@ -61,12 +63,16 @@ import { useRoute, useRouter } from 'vue-router';
 import { computed } from 'vue';
 import { heartOutline, arrowBack, heart } from 'ionicons/icons';
 import { text1, text2, text3, text4, text5, text6, text7, text8 } from '../data/bookDescription.js'
+
 const genres = [
   { name: 'Sci-Fi', emoji: '🚀' }, //SciFi
   { name: 'Adventure', emoji: '🌄' }, //Journey
   { name: 'Drama', emoji: '🎭' },
   { name: 'Comedy', emoji: '🤣' }
 ];
+
+
+
 
 const originalImagesFromHome = [
   { url: 'https://unsplash.it/100/150?image=41', title: 'Image 1', author: 'Author 1', rating: 4.5, genre: 'Sci-Fi', id: 1, pages: 323, reviews: '12.7K', text: text1 },
