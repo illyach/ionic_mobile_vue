@@ -6,7 +6,7 @@ import Msg from '../views/Msg.vue'
 import BookPage from '../views/BookPage.vue';
 import LibraryPage from '../views/LibraryPage.vue';
 import FavoritePage from '../views/FavoritePage.vue';
-
+import TextPage from '../views/TextPage.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -36,7 +36,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/fav',
     name: 'FavoritePage',
     component: FavoritePage
-  },
+  }
+  
   
   
 ]

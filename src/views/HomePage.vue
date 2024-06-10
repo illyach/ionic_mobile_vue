@@ -121,7 +121,7 @@ import BookPage from './BookPage.vue'
 
 </script>
 
-<style>
+<style >
 .ion-page {
   background-color: black;
 }

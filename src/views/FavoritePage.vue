@@ -87,6 +87,7 @@
   
   .image-wrapper {
     position: relative;
+
     
   }
   
@@ -99,8 +100,7 @@
   .favorite-icon {
     position: absolute;
     top: 4px;
-    right: 3px;
-    cursor: pointer;
+    right:1px;
   }
   
   .info {
