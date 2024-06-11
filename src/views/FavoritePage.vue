@@ -1,5 +1,10 @@
 <template>
   <ion-page>
+    <div class="icon-container">
+      <div class="circle"></div>
+
+      <ion-icon :icon="arrowBack" class="icon" size="large" color="light" @click="goBack"></ion-icon>
+    </div>
     <ion-content class="dark-background">
       <div class="content-container" v-if="sharedState.favorites.length === 0">
         <p>No favorites yet.</p>
@@ -30,11 +35,19 @@
 </template>
 
 <script setup>
-import { IonPage, IonContent, IonIcon } from '@ionic/vue';
-import { heartOutline, heartDislike } from 'ionicons/icons';
+import {  IonPage, IonContent, IonIcon, IonTabs, IonRouterOutlet, IonTabBar, IonButton, IonLabel, IonNavLink } from '@ionic/vue';
+
 import { sharedState } from '../state.js';
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { heartOutline, arrowBack, heart,heartDislike } from 'ionicons/icons';
 
+
+  const router = useRouter();
+
+  const goBack = () => {
+  router.go(-1);
+};
 const heartIcon = heartDislike;
 
 const showState = () => {
@@ -61,6 +74,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92); 
+  opacity:13%;
+  z-index: 3;
+}
+
+.circle:first-of-type {
+  width: 60px;
+  height: 60px;
+}
+
+.circle:last-of-type {
+  width: 60px;
+  height: 60px;
+}
 p, h1{
   color: white;
 }
