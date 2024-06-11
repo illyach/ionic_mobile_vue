@@ -13,7 +13,7 @@
       </div>
       <div class="icon-container">
         <div class="circle"></div>
-        <ion-icon :icon="heartOutline" class="icon" size="large" color="light" @click="toggleFavorite(bookPage)"></ion-icon>
+        <ion-icon :icon="heartOutline" class="icon" size="large" color="light" @click="toggleFavorite(bookPage)" :style="dynamicStyle"></ion-icon>
       </div>
     </div>
     <div class="second_section">
@@ -58,6 +58,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { IonPage, IonButton, IonIcon } from '@ionic/vue';
 import { useRoute, useRouter } from 'vue-router';
 import { computed } from 'vue';
@@ -94,7 +95,20 @@ const isFavorite = computed(() => {
   return favorites.some(fav => fav.id === bookPage.id);
 });
 
+const dynamicStyle = ref({
+  width:'35px',
+  height:'35px',
+});
+
 const toggleFavorite = (book) => {
+  dynamicStyle.value.width = '24px'; 
+  dynamicStyle.value.height = '24px'; 
+
+
+  setTimeout(() => {
+    dynamicStyle.value.width = '35px'; 
+    dynamicStyle.value.height = '35px'; 
+  }, 200); 
   let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   const existingIndex = favorites.findIndex(fav => fav.id === book.id);
   if (existingIndex !== -1) {
