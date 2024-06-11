@@ -46,11 +46,15 @@
   
   <style scoped>
   p {
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    white-space: pre-wrap;
 
+
+   font-family: 'Roboto', 'Open Sans', 'Arial', sans-serif;
+  font-size: 1.1em; /* Оптимальный размер шрифта для чтения на мобильных устройствах */
+  line-height: 1.8; /* Увеличивает расстояние между строками для улучшения читаемости */
+  color: #8a8a8a;
+  margin: 0;
+  padding: 0;
+  padding: 0px 10px 0px 10px;
   }
 
   .circle {
