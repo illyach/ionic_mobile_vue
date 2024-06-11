@@ -1,15 +1,7 @@
 <template>
   <ion-page>
 
-    
-   
-      <h1>Page One</h1>
-      <ion-button @click="goToPageTwo" >Go to Page Two</ion-button>
-
-
-
   
-
     <div class="genre-buttons">
       <button v-for="genre in genres" :key="genre.name" @click="myMethod(genre.name)" :style=" genre.name === isActive ? { color: 'black', backgroundColor: 'white', border:'3px solid black' } : {}" >
         {{ genre.emoji }}  {{ genre.name }} 
@@ -29,20 +21,44 @@
           <div class="info">
             <p class="title">{{ image.title }}</p>
             <p class="author">{{ image.author }}</p>
+            
           </div>
         </div>
       </router-link>
+      
       </div>
     </div>
 
+      <div class="horizontal-lines"></div>
 
+
+      <div class="trending">
+
+        <div class="trending_section">
+          <p class="trending_text">Trending Now</p>
+          <div class="trending_content">
+            <div class="trending_image">
+              <img :src="trendingBook.url" alt="">
+            </div>
+            <div class="trending_info">
+              <p class="trending_title">{{ trendingBook.title }}</p>
+              <p class="trending_author">{{ trendingBook.author }}</p>
+              <p class="trending_rating">⭐ {{ trendingBook.rating }}</p>
+              <p class="trending_description">{{ trendingBook.description }}</p>
+              <router-link :to="{name:'TextPage', params: {id:trendingBook.id}}" class="custom-link">
+                <button class="btn">Read Now</button>
+                 </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
     <nav class="nav">
       <a href="/home" class="nav__link custom-link" :class="{ 'nav__link--active': isActiveHome }" @click="isActiveHome = true">
         <ion-icon :icon="isActiveHome ? home : homeOutline"  size="large"></ion-icon>
         <span class="nav__text">Home</span>
       </a>
  
-      <a href="/home" class="nav__link " :class="{ 'nav__link--active': isActiveSearch }" @click="isActiveSearch = true">
+      <a href="/search" class="nav__link " :class="{ 'nav__link--active': isActiveSearch }" @click="isActiveSearch = true">
         <ion-icon :icon="search" size="large"></ion-icon>
         <span class="nav__text">Search</span>
       </a>
@@ -56,15 +72,18 @@
       </a>
      
     </nav>
+
+
+    
    
   </ion-page>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { IonPage, IonContent, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonLabel, IonIcon, IonNavLink } from '@ionic/vue';
 import { useRouter } from 'vue-router';
-import { playCircle, radio, library, homeOutline, home, search, bookmarks, heartOutline, heart, moon} from 'ionicons/icons';
+import { playCircle, radio, library, homeOutline, home, search, bookmarks, heartOutline, heart, moon, person} from 'ionicons/icons';
 import BookPage from './BookPage.vue'
 
     // const genres = [`Sci-Fi`, 'Adventure', 'Drama', 'Comedy'];
@@ -84,6 +103,10 @@ const originalImages = [
   { url: 'https://i.ibb.co/17pD0dw/8.jpg', title: 'Bridget Jones’s Diary', author: 'Helen Fielding', rating: 3.8, genre: 'Comedy', id: 8 },
   { url: 'https://i.ibb.co/xJKNSQ3/2.jpg', title: 'Adventures of Amina', author: 'Shannon Chakraborty', rating: 4.8, genre: 'Journey', id: 2 }
 ];
+
+const trendingBook = computed(() => {
+  return originalImages.reduce((max, book) => book.rating > max.rating ? book : max, originalImages[0]);
+});
 
     const images = ref(originalImages);
     const saveImage = ref('hello world');
@@ -113,21 +136,93 @@ const originalImages = [
   
    
   
-    const goToPageTwo = () => {
-      router.push('/msg').catch(err => {
-        console.error('Navigation error:', err);
-      });
-    };
+   
 
 </script>
 
 <style >
+.btn {
+  background-color: rgb(114, 117, 225);
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.horizontal-lines {
+ 
+  width: 90%; /* Full width */
+  height: 2px; /* Line height */
+  background-color: rgb(39, 39, 39); /* Line color */
+  margin: 20px 10px 0px 20px; /* Margin for spacing */
+}
+.trending_image img{
+  width: 140px;
+  height: 200px;
+}
+
+.trending {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 140px;
+  padding-left: 15px;
+
+}
+
+.trending_text {
+  font-size: 34px;
+}
+
+.trending_content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.trending_image img {
+  width: 150px;
+  height: 240px;
+  border-radius: 10px;
+}
+
+.trending_info {
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.trending_info .trending_title {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.trending_info .trending_author,
+.trending_info .trending_rating,
+.trending_info .trending_description {
+  font-size: 14px;
+}
+
+.trending_content{
+  background-color:#161616;
+  padding: 13px;
+  border-radius: 30px;
+}
 
 .image-container img{
   width: 140px;
 }
 .ion-page {
   background-color: black;
+
 }
 
 
@@ -140,7 +235,8 @@ const originalImages = [
   gap: 10px;
   padding: 10px;
   scroll-snap-type: x mandatory;
-  margin-bottom: 230px;
+
+  /*margin-bottom: 100px;*/
   margin-left: 10px;
 }
 
@@ -155,8 +251,13 @@ const originalImages = [
 
 .image-container {
   position: relative;
+
 }
 
+.image-container img{
+  border-radius: 30px;
+
+}
 .rating {
   position: absolute;
   top: 180px;
@@ -183,6 +284,7 @@ const originalImages = [
 }
 
 .genre-buttons {
+margin:10px 10px 0px 10px;
   display: flex;
   justify-content: center;
   gap: 10px;
