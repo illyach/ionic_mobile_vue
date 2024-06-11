@@ -31,11 +31,11 @@
   
   <script setup>
   import { IonPage, IonContent, IonIcon } from '@ionic/vue';
-  import { heartOutline } from 'ionicons/icons';
+  import { heartOutline , heartDislike } from 'ionicons/icons';
   import { sharedState } from '../state.js';
   import { onMounted } from 'vue';
   
-  const heartIcon = heartOutline;
+  const heartIcon = heartDislike;
   
   const showState = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');

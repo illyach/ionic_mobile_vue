@@ -7,6 +7,7 @@ import BookPage from '../views/BookPage.vue';
 import LibraryPage from '../views/LibraryPage.vue';
 import FavoritePage from '../views/FavoritePage.vue';
 import TextPage from '../views/TextPage.vue';
+import SearchPage from '../views/SearchPage.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -41,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/read/:id',
     name: 'TextPage',
     component: TextPage
+  },
+  {
+    path: '/search',
+    name: 'SearchPage',
+    component: SearchPage
   }
   
   
