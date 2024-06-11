@@ -240,14 +240,14 @@ span{
   font-size: 18px;
 
 margin-left: 15px;
-padding: 20px;
+padding: 5px;
 }
 
 .btn {
   background-color: rgb(114, 117, 225);
   color: white;
   border: none;
-  padding: 20px 40px;
+  padding: 16px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

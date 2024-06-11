@@ -5,7 +5,10 @@
           <div class="circle"></div>
           <ion-icon :icon="arrowBack" class="icon" size="large" color="light" @click="goBack"></ion-icon>
         </div>
-        <input v-model="searchQuery" type="text" placeholder="Search by title or author" />
+        <div class="input_style">
+          <input v-model="searchQuery" type="text" placeholder="Search by title or author" />
+        </div>
+
         <div class="image-grid" v-if="searchQuery.length > 0">
           <div class="image-item" v-for="(book, index) in filteredBooks" :key="index">
             <router-link :to="{ name: 'BookPage', params: { id: book.id } }" class="custom-link">
@@ -17,7 +20,7 @@
             </router-link>
           </div>
         </div>
-        <div v-else>
+        <div v-else class="found_text">
           <p>No books found.</p>
         </div>
       </div>
@@ -56,7 +59,21 @@
   });
   </script>
   
-  <style>
+  <style scoped>
+  .found_text{
+    display: flex;
+    justify-content: center;
+  }
+  .input_style{
+display: flex;
+justify-content: center;
+  
+  }
+
+  input{
+    padding: 20px;
+    border-radius: 40px;
+  }
   .content-container {
     height: 100vh;
     overflow-y: auto;

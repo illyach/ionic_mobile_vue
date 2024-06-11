@@ -153,6 +153,7 @@ const trendingBook = computed(() => {
   border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+ 
 
 }
 
@@ -171,7 +172,7 @@ const trendingBook = computed(() => {
 .trending {
   display: flex;
   justify-content: flex-start;
-  padding-bottom: 140px;
+  padding-bottom: 90px;
   padding-left: 15px;
 
 }
@@ -230,6 +231,7 @@ const trendingBook = computed(() => {
 
 
 .slider {
+
   display: flex;
   overflow-x: auto;
   gap: 10px;
